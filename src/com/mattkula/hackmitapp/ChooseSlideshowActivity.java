@@ -8,11 +8,14 @@ import org.json.JSONObject;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -26,6 +29,7 @@ import com.squareup.picasso.Picasso;
 public class ChooseSlideshowActivity extends Activity {
 	
 	private long event_id = -1;
+	private String event_name = "";
 	ArrayList<Slideshow> slideshows;
 	GridView grid;
 
@@ -65,16 +69,32 @@ public class ChooseSlideshowActivity extends Activity {
         		grid.setAdapter(new SlideshowAdapter());
         	}
         });
+        
+        grid.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View view, int pos,
+					long id) {
+				Intent i = new Intent(ChooseSlideshowActivity.this, ControlSlideshowActivity.class);
+				i.putExtra("event_id", event_id);
+				i.putExtra("slideshow_id", slideshows.get(pos).id);
+				i.putExtra("slideshow_name", slideshows.get(pos).name);
+				startActivity(i);
+				overridePendingTransition(R.anim.custom_window_enter_up, R.anim.custom_window_exit_up);
+			}
+		});
 		
 	}
 	
 	private void init(Bundle bananas){
 		event_id = getIntent().getExtras().getLong("event_id");
+		event_name = getIntent().getExtras().getString("event_name");
 		if(bananas != null && event_id == -1){
 			event_id = bananas.getLong("event_id");
+			event_name = bananas.getString("event_name");
 		}
 		
 		ActionBar ab = getActionBar();
+		ab.setTitle(event_name);
 		ab.setDisplayHomeAsUpEnabled(true);
 		
 		slideshows = new ArrayList<Slideshow>();
@@ -93,6 +113,7 @@ public class ChooseSlideshowActivity extends Activity {
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		outState.putLong("event_id", event_id);
+		outState.putString("event_name", event_name);
 	}
 	
 	private class SlideshowAdapter extends BaseAdapter{

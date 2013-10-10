@@ -28,6 +28,9 @@
         <activity 
             android:name=".ChooseSlideshowActivity">
         </activity>
+        <activity 
+            android:name=".ControlSlideshowActivity">
+        </activity>
         <receiver 
             android:name=".PebbleConnectionReceiver">
             <intent-filter>

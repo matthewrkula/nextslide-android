@@ -75,6 +75,7 @@ public class MainActivity extends FragmentActivity {
 			public void onItemClick(AdapterView<?> arg0, View v, int pos, long id) {
 				Intent i = new Intent(MainActivity.this, ChooseSlideshowActivity.class);
 				i.putExtra("event_id", events.get(pos).id);
+				i.putExtra("event_name", events.get(pos).name);
 				startActivity(i);
 //				overridePendingTransition(android.R.anim.slide_in_left, R.anim.custom_window_exit);
 				overridePendingTransition(R.anim.custom_window_enter_up, R.anim.custom_window_exit_up);
