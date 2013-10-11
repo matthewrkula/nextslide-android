@@ -5,5 +5,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_section1">Presentations</string>
     <string name="title_section2">Controls</string>
-
+    <string name="forward">forward</string>
+    <string name="backward">backward</string>
 </resources>

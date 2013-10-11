@@ -1,4 +1,4 @@
-package com.mattkula.hackmitapp;
+package com.mattkula.hackmitapp.pebble;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

@@ -1,21 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent" 
+    android:orientation="vertical">
     
-    <Button
-        android:id="@+id/btn_back"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:text="Back"/>
+    <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="0.5">
+        
+        <LinearLayout
+            android:id="@+id/image_holder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+        </LinearLayout>
     
-     <Button
-        android:id="@+id/btn_forward"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:text="Forward"/>
+	    <Button
+	        android:id="@+id/btn_back"
+	        android:layout_width="100dp"
+	        android:layout_height="100dp"
+	        android:layout_alignParentLeft="true"
+	        android:layout_centerVertical="true"
+	        android:layout_marginLeft="10dip"
+	        android:background="@drawable/left_arrow"
+	        android:text=""/>
+	    
+	     <Button
+	        android:id="@+id/btn_forward"
+	        android:layout_width="100dp"
+	        android:layout_height="100dp"
+	        android:layout_alignParentRight="true"
+	        android:layout_centerVertical="true"
+	        android:layout_marginRight="10dip"
+	        android:background="@drawable/right_arrow"
+	        android:text=""/>
+     </RelativeLayout>
+     
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="0.5">
+	     
+        <TextView
+            android:id="@+id/tv_notes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="10pt"/>
+        
+    </RelativeLayout>
     
 
-</RelativeLayout>
+</LinearLayout>

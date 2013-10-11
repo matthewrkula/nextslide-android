@@ -1,6 +1,8 @@
-package com.mattkula.hackmitapp;
+package com.mattkula.hackmitapp.activities;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,6 +25,8 @@ import android.widget.TextView;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.mattkula.hackmitapp.R;
+import com.mattkula.hackmitapp.data.Slide;
 import com.mattkula.hackmitapp.data.Slideshow;
 import com.squareup.picasso.Picasso;
 
@@ -56,11 +60,28 @@ public class ChooseSlideshowActivity extends Activity {
 						long id = obj.getLong("id");
 						String name = obj.getString("name");
 						String first_image_url = obj.getString("first_image_url");
+						String url = obj.getJSONObject("url").getJSONObject("url").getString("url");
+						
+						ArrayList<Slide> slides = new ArrayList<Slide>();
+						JSONArray slidesArr = obj.getJSONArray("slides");
+						
+						for(int j=0; j < slidesArr.length(); j++){
+							Slide slide = new Slide();
+							slide.id = slidesArr.getJSONObject(j).getLong("id");
+							slide.note = slidesArr.getJSONObject(j).getString("note");
+							slide.slide_number = slidesArr.getJSONObject(j).getInt("slide_number");
+							slides.add(slide);
+						}
+						
+						Collections.sort(slides);
 						
 						Slideshow s = new Slideshow();
 						s.id = id;
 						s.name = name;
 						s.first_image_url = first_image_url;
+						s.slides = slides;
+						s.event_id = event_id;
+						s.url = url;
 						slideshows.add(s);
 					}
 					
@@ -75,9 +96,7 @@ public class ChooseSlideshowActivity extends Activity {
 			public void onItemClick(AdapterView<?> arg0, View view, int pos,
 					long id) {
 				Intent i = new Intent(ChooseSlideshowActivity.this, ControlSlideshowActivity.class);
-				i.putExtra("event_id", event_id);
-				i.putExtra("slideshow_id", slideshows.get(pos).id);
-				i.putExtra("slideshow_name", slideshows.get(pos).name);
+				i.putExtra("slideshow", slideshows.get(pos));
 				startActivity(i);
 				overridePendingTransition(R.anim.custom_window_enter_up, R.anim.custom_window_exit_up);
 			}

@@ -8,7 +8,7 @@
         android:layout_height="fill_parent"
         android:layout_width="fill_parent"
         android:src="@drawable/ic_launcher"
-        android:contentDescription="PIcture"
+        android:contentDescription="@string/app_name"
         android:scaleType="centerCrop"/>
     
     <RelativeLayout 
@@ -21,7 +21,6 @@
             android:id="@+id/event_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Testest"
             android:textColor="@android:color/white"
             android:layout_margin="5dip"
             android:layout_centerInParent="true"/>

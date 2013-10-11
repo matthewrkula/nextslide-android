@@ -17,7 +17,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.mattkula.hackmitapp.MainActivity"
+            android:name="com.mattkula.hackmitapp.activities.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,13 +26,13 @@
             </intent-filter>
         </activity>
         <activity 
-            android:name=".ChooseSlideshowActivity">
+            android:name="com.mattkula.hackmitapp.activities.ChooseSlideshowActivity">
         </activity>
         <activity 
-            android:name=".ControlSlideshowActivity">
+            android:name="com.mattkula.hackmitapp.activities.ControlSlideshowActivity">
         </activity>
         <receiver 
-            android:name=".PebbleConnectionReceiver">
+            android:name="com.mattkula.hackmitapp.pebble.PebbleConnectionReceiver">
             <intent-filter>
                 <action android:name="com.getpebble.action.PEBBLE_CONNECTED"/>
             </intent-filter>

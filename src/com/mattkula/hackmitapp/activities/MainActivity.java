@@ -1,4 +1,4 @@
-package com.mattkula.hackmitapp;
+package com.mattkula.hackmitapp.activities;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -29,7 +29,10 @@ import com.getpebble.android.kit.PebbleKit;
 import com.getpebble.android.kit.util.PebbleDictionary;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.mattkula.hackmitapp.PreferenceManager;
+import com.mattkula.hackmitapp.R;
 import com.mattkula.hackmitapp.data.Event;
+import com.mattkula.hackmitapp.pebble.PebbleConnectionReceiver;
 import com.squareup.picasso.Picasso;
 
 public class MainActivity extends FragmentActivity {
@@ -61,7 +64,6 @@ public class MainActivity extends FragmentActivity {
 						JSONObject obj = arr.getJSONObject(i);
 						events.add(new Event(obj.getLong("id"), obj.getString("name"), obj.getString("image")));
 					}
-					
 				} catch (JSONException e) {}
         		
         		grid.setAdapter(new EventAdapter());
@@ -77,7 +79,6 @@ public class MainActivity extends FragmentActivity {
 				i.putExtra("event_id", events.get(pos).id);
 				i.putExtra("event_name", events.get(pos).name);
 				startActivity(i);
-//				overridePendingTransition(android.R.anim.slide_in_left, R.anim.custom_window_exit);
 				overridePendingTransition(R.anim.custom_window_enter_up, R.anim.custom_window_exit_up);
 			}
 		});
